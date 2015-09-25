@@ -10,4 +10,13 @@ ok !$?;
 
 chdir 't/git-repo' or die $!;
 
+system('git init');
+ok !$?;
+
+system('cp ../../pre-commit .git/hooks');
+ok !$?;
+
+system('chmod +x .git/hooks/pre-commit');
+ok !$?;
+
 done_testing;
