@@ -10,7 +10,7 @@ chdir 't/git-repo/' or die $!;
 system('cp ../*.py .');
 ok !$?;
 
-my $output = `ls -1`;
+my $output = `ls -1 | grep .*\.py`;
 
 ok $output eq 'test.py
 uncommitted.py
