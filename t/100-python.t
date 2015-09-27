@@ -26,4 +26,7 @@ test.py:3:80: E501 line too long (97 > 79 characters)
 test.py:5:31: E225 missing whitespace around operator
 ", 'flake8 ran on committed Python file';
 
+$output = `git reset`;
+ok !$?;
+
 done_testing;
