@@ -17,7 +17,20 @@ fi
 #   LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
 files=$(git diff --cached --name-only --diff-filter=AMR -z $against)
 python_files=$(echo $files | grep .*\.py)
+javascript_files=$(echo $files | grep .*\.js)
+flake_exit=0
+jshint_exit=0
 
 if [ -n "$python_files" ]; then
 	flake8 $python_files
+	flake_exit=$?
+fi
+
+if [ -n "$javascript_files" ]; then
+	./node_modules/.bin/jshint $javascript_files
+	jshint_exit=$?
+fi
+
+if [ !$flake_exit ] || [ !$jshint_exit ]; then
+	exit 1
 fi
