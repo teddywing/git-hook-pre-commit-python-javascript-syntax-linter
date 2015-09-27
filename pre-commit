@@ -10,11 +10,6 @@ else
 	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
-# Redirect output to stderr.
-# exec 1>&2
-
-# test $(git diff --cached --name-only --diff-filter=A -z $against |
-#   LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
 files=$(git diff --cached --name-only --diff-filter=AMR -z $against)
 python_files=$(echo $files | grep .*\.py)
 javascript_files=$(echo $files | grep .*\.js)
